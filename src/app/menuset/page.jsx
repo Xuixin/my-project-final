@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ClipboardPen, ChevronDown } from "lucide-react";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   Select,
   SelectContent,
@@ -23,20 +23,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Menu = () => {
-  const [position, setPosition] = useState("เมนู");
+
+const MenuSet = () => {
+  const [position, setPosition] = useState("เมนูเซ็ต");
+
   return (
     <section className="ml-3 h-screen flex space-x-5 space-y-3 flex-col bg-white">
-      {/*sup-nav*/}
       <div className="h-20 shadow-md mx-3 w-full flex justify-start items-center">
         <div className="px-3 mt-5 flex">
-          <h2 className="text-center font-bold text-2xl">จัดการเมนู</h2>
+          <h2 className="text-center font-bold text-2xl">จัดการเมนูเซ็ต</h2>
           <div className="ml-10">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {position} <ChevronDown />
-                </Button>
+                <Button variant="outline">{position} <ChevronDown /></Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
@@ -45,19 +44,14 @@ const Menu = () => {
                   value={position}
                   onValueChange={setPosition}
                 >
-                  <DropdownMenuRadioItem value="เมนู">
-                    <Link href="/menu">เมนู</Link>
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="เมนูเซ็ต">
-                    <Link href="/menuset">เมนูเซ็ต</Link>
-                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="เมนู"><Link href="/menu">เมนู</Link></DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="เมนูเซ็ต"><Link href="/menuset">เมนูเซ็ต</Link></DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
       </div>
-      {/*search-type-orderby*/}
       <div className="h-20 px-3 w-full flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <Select>
@@ -96,7 +90,7 @@ const Menu = () => {
           </Select>
         </div>
       </div>
-      {/*item menu */}
+
       <div className="grid grid-cols-5 gap-4 ">
         <div className="flex flex-col items-center h-60 py-5 px-2 space-y-5 shadow-sm rounded-md border">
           <Image src="/orange.jpg" alt="alt" width={125} height={75} />
@@ -124,4 +118,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuSet;
