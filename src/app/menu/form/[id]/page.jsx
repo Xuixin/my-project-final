@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Check, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -19,6 +20,7 @@ const discountList = [
 ];
 
 const UpdateMenu = ({ params }) => {
+  const id = useParams().id
   const [selectedFile, setSelectedFile] = useState("No file chosen");
   const [selected, setSelected] = useState(typeList[0]);
   const [disCountList, setDisCountList] = useState(discountList[0]);
@@ -45,7 +47,7 @@ const UpdateMenu = ({ params }) => {
             จัดการเมนู
           </Link>
           <h2 className="text-center font-bold text-2xl">/</h2>
-          <h2 className="text-center font-bold text-2xl">แก้ไขเมนู</h2>
+          <h2 className="text-center font-bold text-2xl">แก้ไขเมนู {id}</h2>
         </div>
       </div>
 
