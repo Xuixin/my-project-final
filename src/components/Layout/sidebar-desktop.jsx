@@ -2,11 +2,11 @@
 import { SidebarButton } from "./sidebar-button";
 import { LayoutDashboard, LogOut, MoreHorizontal, Salad, Settings , Users} from "lucide-react";
 import Link from "next/link";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Button } from "../ui/button";
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import { AvatarImage } from "./ui/avatar";
-import { Separator } from "./ui/separator";
+import { AvatarImage } from "../ui/avatar";
+import { Separator } from "../ui/separator";
 import { usePathname } from "next/navigation";
 
 export function Sidebardesktop() {

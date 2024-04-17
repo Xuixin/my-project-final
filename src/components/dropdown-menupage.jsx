@@ -31,17 +31,15 @@ export function DropdownMenuPages({ path }){
                   {position} <ChevronDown />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+              <DropdownMenuContent className='w-36'>
                 <DropdownMenuRadioGroup
                   value={position}
                   onValueChange={setPosition}
                 >
-                  <DropdownMenuRadioItem >
+                  <DropdownMenuRadioItem value='เมนู' >
                     <Link href="/menu" className="w-full" >เมนู</Link>
                   </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value='เมนูเซ็ต' >
                     <Link href="/menuset" className="w-full">เมนูเซ็ต</Link>
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>

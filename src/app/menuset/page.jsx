@@ -1,5 +1,4 @@
 "use client";
-import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import {
   Select,
@@ -11,7 +10,8 @@ import {
 } from "@/components/ui/select";
 import { DropdownMenuPages } from "@/components/dropdown-menupage";
 import { usePathname } from "next/navigation";
-import { DialogMenuSet } from "@/components/updateMenuSet";
+import { DialogMenuSet } from "@/components/MenuSet/updateMenuSet";
+import { AddMenuSet  } from "@/components/MenuSet/AddMenuSet";
 import { Button } from "@/components/ui/button";
 
 
@@ -40,9 +40,9 @@ const MenuSet = () => {
   const pathName = usePathname();
 
   return (
-    <section className="ml-3 h-screen flex space-x-5 space-y-3 flex-col bg-white">
+    <section className="flex ml-3 h-screen flex-col bg-white">
       {/* ################## HEADER ################ */}
-      <div className="h-20 shadow-md mx-3 w-full flex justify-start items-center">
+      <div className="h-20 shadow-md w-full flex justify-start ">
         <div className="px-3 mt-5 flex">
           <h2 className="text-center font-bold text-2xl">จัดการเมนูเซ็ต</h2>
           <div className="ml-10">
@@ -50,11 +50,16 @@ const MenuSet = () => {
           </div>
         </div>
       </div>
+      {/* line */}
+      <div className=" h-5 bg-slate-100 mb-3"></div>
       {/* ################## MENU SET ##############*/}
       <div className="flex flex-col justify-center items-center px-5">
         {/*ORDER BY */}
         <div className="w-full">
-          <div className="h-10 w-full flex justify-end items-center">
+          <div className="h-10 w-full flex justify-between items-center">
+            <div className="">
+              <AddMenuSet />
+            </div>
             <div className="ml-20 mr-5">
               <Select>
                 <SelectTrigger className="w-[120px]">

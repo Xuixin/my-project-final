@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebardesktop } from "@/components/sidebar-desktop";
+import { Sidebardesktop } from "@/components/Layout/sidebar-desktop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en" >
       <body className={inter.className}>
         <Sidebardesktop />
-        <main className=" ml-64 mt-3 mr-3 bg-gray-100">{children}</main>
+        <main className=" ml-64 h-screen bg-gray-100">{children}</main>
       </body>
     </html>
   );

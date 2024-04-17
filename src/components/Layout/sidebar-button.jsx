@@ -1,5 +1,5 @@
 import { Sun, LucideIcon, Home } from "lucide-react";
-import { Button, ButtonProps } from "./ui/button";
+import { Button, ButtonProps } from "../ui/button";
 
 export function SidebarButton({
   icon: Icon,
