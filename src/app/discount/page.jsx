@@ -48,7 +48,7 @@ const Discount = () => {
       </div>
       {/* line */}
       <div className=" h-5 bg-slate-100 mb-3"></div>
-      {/* ################## MENU SET ##############*/}
+      {/* ################## DISCOUNT ##############*/}
       <div className="flex flex-col justify-center items-center px-5">
         {/*ORDER BY */}
         <div className="w-full">

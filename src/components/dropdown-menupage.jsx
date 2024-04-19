@@ -1,54 +1,73 @@
-'use client'
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
-export function DropdownMenuPages({ path }){
-    const [position, setPosition] = useState("");
-    const pathName = usePathname()
-    useEffect(() => {
-        if(path == '/menu'){
-            setPosition('เมนู')
-        }else if(path == '/menuset'){
-            setPosition('เมนูเซ็ต')
-        }else if(path == '/discount'){
-          setPosition('ส่วนลด')
-        }
-    },[pathName])
-    return(
-        <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {position} <ChevronDown />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className='w-36'>
-                <DropdownMenuRadioGroup
-                  value={position}
-                  onValueChange={setPosition}
-                >
-                  <DropdownMenuRadioItem value='เมนู' >
-                    <Link href="/menu" className="w-full" >เมนู</Link>
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value='เมนูเซ็ต' >
-                    <Link href="/menuset" className="w-full">เมนูเซ็ต</Link>
-                  </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value='ส่วนลด' >
-                    <Link href="/discount" className="w-full">ส่วนลด</Link>
-                  </DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-    )
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+export function DropdownMenuPages({ path }) {
+  const [position, setPosition] = useState("");
+  useEffect(() => {
+    switch (path) {
+      case "/menu":
+        setPosition("เมนู");
+        break;
+      case "/menuset":
+        setPosition("เมนูเซ็ต");
+        break;
+      case "/discount":
+        setPosition("ส่วนลด");
+        break;
+      case "/menutype":
+        setPosition("ประเภทเมนู");
+      default:
+        break;
+    }
+  }, [path]);
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" className="flex justify-between">
+          <span>{position}</span>
+          <ChevronDown size={20} />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-36">
+        <DropdownMenuGroup>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+              <span>จัดการเมนู</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem>
+                  <Link href={"/menu"}>เมนู</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href={"/menutype"}>ประเภทเมนู</Link>
+                </DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+          <DropdownMenuItem>
+            <Link href={"/menuset"}>เมนูเซ็ต</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href={"/discount"}>ส่วนลด</Link>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }
