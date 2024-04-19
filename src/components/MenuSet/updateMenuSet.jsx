@@ -75,7 +75,7 @@ const DialogMenuSet = ({ id }) => {
           view
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-md  max-h-[40rem] mix-w-md transition-height duration-300 ease-in-out overflow-auto'>
+      <DialogContent className='sm:max-w-md  max-h-[40rem] min-w-[768px] transition-height duration-300 ease-in-out overflow-auto'>
         <DialogHeader className='mb-1'>
           <DialogTitle>ฟอร์มอัพเดตข้อมูลเมนูเซ็ต {id}</DialogTitle>
           <hr />
@@ -116,13 +116,13 @@ const DialogMenuSet = ({ id }) => {
                     <tr key={d.id} className='my-1'>
                       <td>{index + 1}</td>
                       <td colSpan={2}>{d.name}</td>
-                      <td>
+                      <td className='flex space-x-2'>
                         <button
                           onClick={() => handleQuantityIncrement(index, -1)}
                         >
                           <Minus size={15} />
                         </button>
-                        {d.quantity}
+                        <p>{d.quantity}</p>
                         <button
                           onClick={() => handleQuantityIncrement(index, 1)}
                         >
@@ -141,7 +141,7 @@ const DialogMenuSet = ({ id }) => {
                   ))}
                 {menuData.length === 0 && (
                   <tr>
-                    <td colSpan='4'>No menu items</td>
+                    <td colSpan='6' className='text-center'>No menu items</td>
                   </tr>
                 )}
               </tbody>

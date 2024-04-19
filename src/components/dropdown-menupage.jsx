@@ -22,6 +22,8 @@ export function DropdownMenuPages({ path }){
             setPosition('เมนู')
         }else if(path == '/menuset'){
             setPosition('เมนูเซ็ต')
+        }else if(path == '/discount'){
+          setPosition('ส่วนลด')
         }
     },[pathName])
     return(
@@ -41,6 +43,9 @@ export function DropdownMenuPages({ path }){
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value='เมนูเซ็ต' >
                     <Link href="/menuset" className="w-full">เมนูเซ็ต</Link>
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value='ส่วนลด' >
+                    <Link href="/discount" className="w-full">ส่วนลด</Link>
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>

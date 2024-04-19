@@ -70,7 +70,7 @@ export function AddMenuSet() {
           เพิ่มเมนูเซ็ต
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md  max-h-[40rem] mix-w-md transition-height duration-300 ease-in-out overflow-auto">
+      <DialogContent className="sm:max-w-md  max-h-[40rem] min-w-[768px] transition-height duration-300 ease-in-out overflow-auto">
         <DialogHeader className="mb-1">
           <DialogTitle>ฟอร์มเพิ่มข้อมูลเมนูเซ็ต</DialogTitle>
           <hr />
@@ -96,7 +96,7 @@ export function AddMenuSet() {
           </div>
           {/* Table Show Menu in Menuset */}
           <div className="col-span-6 border bg-slate-100 rounded-sm py-2 pl-4">
-            <table className="w-full text-start table-fixed ">
+            <table className="w-full text-start table-fixed">
               <thead className="border-b-2 ">
                 <tr>
                   <td>#</td>
@@ -136,7 +136,7 @@ export function AddMenuSet() {
                   ))}
                 {menuData.length === 0 && (
                   <tr>
-                    <td colSpan="4">No menu items</td>
+                    <td colSpan="6" className='text-center'>No menu items</td>
                   </tr>
                 )}
               </tbody>
@@ -190,7 +190,7 @@ export function AddMenuSet() {
           <DialogClose asChild>
             <div className="flex justify-center items-center w-3/5">
               <Button type="button" className="w-full">
-                อัพเดตรายการ
+                เพิ่มรายการ
               </Button>
             </div>
           </DialogClose>
