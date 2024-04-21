@@ -22,12 +22,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Suspense } from "react";
 import axios from "axios";
+import { EditType } from "@/components/Menutype.jsx/EditType";
 
 const MenuType = () => {
   const pathName = usePathname();
   const [typeName, setTypeName] = useState("");
   const [types, setTypes] = useState([]);
+  const [rerender, setReresder] = useState(false)
 
   const fetchTypes = async () => {
     try {
@@ -40,7 +43,8 @@ const MenuType = () => {
 
   useEffect(() => {
     fetchTypes();
-  }, []);
+    setReresder(false)
+  }, [rerender]);
 
   // AddMenuType
   const handleAddSubmit = async () => {
@@ -56,7 +60,7 @@ const MenuType = () => {
   const handleDeleteSubmit = async (id) => {
     try {
       await axios.delete(`/api/menutype/${id}`);
-      alert('deleted data')
+      alert("deleted data");
       fetchTypes();
     } catch (error) {
       console.log(error);
@@ -81,6 +85,7 @@ const MenuType = () => {
         <div className="w-full">
           <div className="h-10 w-full flex justify-between items-center">
             <div className="">
+              {/* Add Menu Type */}
               <Dialog className="border">
                 <DialogTrigger asChild>
                   <Button variant="outline">เพิ่มประเภทเมนู</Button>
@@ -145,7 +150,7 @@ const MenuType = () => {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         #
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4">ชื่อ</td>
+                      <td className="whitespace-nowrap px-6 py-4" colSpan={2}>ชื่อ</td>
                       <td className="whitespace-nowrap pl-6 py-4">แก้ไข</td>
                       <td className="whitespace-nowrap py-4">ลบ</td>
                     </tr>
@@ -153,18 +158,22 @@ const MenuType = () => {
                   <tbody>
                     {types.map((type, index) => (
                       <tr
-                        key={type.typeid}
+                        key={type.id}
                         className="border-b border-t transition duration-300 ease-in-out   dark:border-neutral-500 dark:hover:bg-neutral-600"
                       >
-                        <td className="whitespace-nowrap px-6 py-4">{index+1}</td>
                         <td className="whitespace-nowrap px-6 py-4">
+                          {index + 1}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4" colSpan={2}>
                           {type.typeName}
                         </td>
-                        <td className="whitespace-nowrap pl-6 py-4">แก้ไข</td>
+                        <td className="whitespace-nowrap pl-6 py-4">
+                          <EditType id={type.id} val={type.typeName} func={setReresder}/>
+                        </td>
                         <td className="whitespace-nowrap py-4">
                           <Button
                             variant="destructive"
-                            onClick={() => handleDeleteSubmit(type.typeid)}
+                            onClick={() => handleDeleteSubmit(type.id)}
                             className="text-white"
                           >
                             delete

@@ -25,9 +25,9 @@ export async function PUT(req, { params }) {
   const id = Number(params.id);
   const { typeName } = await req.json();
 
-  const updateType = await prisma.menuType.update({
+  const updateType = await prisma.menutype.update({
     where: {
-      typeid: id,
+      id: id,
     },
     data: {
       typeName,
@@ -39,9 +39,9 @@ export async function PUT(req, { params }) {
 export async function DELETE(req, { params }){
     const id = Number(params.id);
 
-    const deleteType = await prisma.menuType.delete({
+    const deleteType = await prisma.menutype.delete({
         where: {
-            typeid: id
+            id: id
         }
     })
     return Response.json(deleteType)

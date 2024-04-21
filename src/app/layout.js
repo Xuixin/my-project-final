@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebardesktop } from "@/components/Layout/sidebar-desktop";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,10 +13,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className={inter.className}>
         <Sidebardesktop />
-        <main className=" ml-64 h-screen bg-gray-100">{children}</main>
+        <main className=" ml-64 h-screen bg-gray-100">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </main>
       </body>
     </html>
   );
