@@ -10,27 +10,14 @@ import {
 } from "@/components/ui/select";
 import { DropdownMenuPages } from "@/components/dropdown-menupage";
 import { usePathname } from "next/navigation";
-import { Label } from "@radix-ui/react-label";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Suspense } from "react";
 import axios from "axios";
-import { EditType } from "@/components/Menutype.jsx/EditType";
+import { AddType, DeleteType, EditType } from "@/app/menutype/actions/EditType";
 
 const MenuType = () => {
   const pathName = usePathname();
-  const [typeName, setTypeName] = useState("");
   const [types, setTypes] = useState([]);
-  const [rerender, setReresder] = useState(false)
+  const [rerender, setRerender] = useState(false);
 
   const fetchTypes = async () => {
     try {
@@ -43,29 +30,9 @@ const MenuType = () => {
 
   useEffect(() => {
     fetchTypes();
-    setReresder(false)
+    setRerender(false);
   }, [rerender]);
 
-  // AddMenuType
-  const handleAddSubmit = async () => {
-    try {
-      await axios.post("/api/menutype", { typeName });
-      fetchTypes();
-    } catch (error) {
-      console.log("error", error);
-      alert("something went wrong");
-    }
-  };
-
-  const handleDeleteSubmit = async (id) => {
-    try {
-      await axios.delete(`/api/menutype/${id}`);
-      alert("deleted data");
-      fetchTypes();
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <section className="flex ml-3 h-screen flex-col bg-white">
       {/* ################## HEADER ################ */}
@@ -86,44 +53,7 @@ const MenuType = () => {
           <div className="h-10 w-full flex justify-between items-center">
             <div className="">
               {/* Add Menu Type */}
-              <Dialog className="border">
-                <DialogTrigger asChild>
-                  <Button variant="outline">เพิ่มประเภทเมนู</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md  max-h-[40rem] mix-w-md transition-height duration-300 ease-in-out overflow-auto">
-                  <DialogHeader className="mb-1">
-                    <DialogTitle>ฟอร์มเพิ่มประเภทเมนู</DialogTitle>
-                    <hr />
-                  </DialogHeader>
-                  <div className="grid grid-cols-1 gap-2">
-                    {/* Add Menu Type */}
-                    <div className="col-span-1">
-                      <Label htmlFor="addQuan">ประเภทเมนู</Label>
-                      <div>
-                        <Input
-                          type="text"
-                          value={typeName}
-                          onChange={(e) => setTypeName(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Button Add Menuset Into Database */}
-                  <DialogFooter className="sm:justify-center my-5">
-                    <DialogClose asChild>
-                      <div className="flex justify-center items-center w-3/5">
-                        <Button
-                          type="button"
-                          onClick={handleAddSubmit}
-                          className="w-full"
-                        >
-                          เพิ่มประเภทเมนู
-                        </Button>
-                      </div>
-                    </DialogClose>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+              <AddType func={setRerender}/>
             </div>
             <div className="ml-20 mr-5">
               <Select>
@@ -150,7 +80,9 @@ const MenuType = () => {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         #
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4" colSpan={2}>ชื่อ</td>
+                      <td className="whitespace-nowrap px-6 py-4" colSpan={2}>
+                        ชื่อ
+                      </td>
                       <td className="whitespace-nowrap pl-6 py-4">แก้ไข</td>
                       <td className="whitespace-nowrap py-4">ลบ</td>
                     </tr>
@@ -168,16 +100,14 @@ const MenuType = () => {
                           {type.typeName}
                         </td>
                         <td className="whitespace-nowrap pl-6 py-4">
-                          <EditType id={type.id} val={type.typeName} func={setReresder}/>
+                          <EditType
+                            id={type.id}
+                            val={type.typeName}
+                            func={setRerender}
+                          />
                         </td>
                         <td className="whitespace-nowrap py-4">
-                          <Button
-                            variant="destructive"
-                            onClick={() => handleDeleteSubmit(type.id)}
-                            className="text-white"
-                          >
-                            delete
-                          </Button>
+                          <DeleteType id={type.id} func={setRerender} />
                         </td>
                       </tr>
                     ))}
