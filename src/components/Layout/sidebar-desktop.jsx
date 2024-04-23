@@ -27,7 +27,7 @@ export function Sidebardesktop() {
             </Link>
             <Link href="/Admin/menuManage/menu">
                 <SidebarButton className={"w-full"} icon={Salad} variant={pathName == '/Admin/menuManage/menu' ? 'secondary' : 'ghost'}>
-                เมนู
+                รายการเมนู และ CRM
               </SidebarButton>
             </Link>
             <Link href="/Admin/employee">

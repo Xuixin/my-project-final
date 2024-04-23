@@ -32,7 +32,7 @@ function DataTable() {
     {
       id: 1,
       name: "imron",
-      dutyID: {
+      department: {
         id: 3,
         name: "พ่อครัว",
       },
@@ -41,7 +41,7 @@ function DataTable() {
     {
       id: 1,
       name: "imron",
-      dutyID: {
+      department: {
         id: 3,
         name: "พ่อครัว",
       },
@@ -69,7 +69,7 @@ function DataTable() {
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>EM-{flexRender(data.id)}</TableCell>
                 <TableCell>{flexRender(data.name)}</TableCell>
-                <TableCell>{flexRender(data.dutyID.name)}</TableCell>
+                <TableCell>{flexRender(data.department.name)}</TableCell>
                 <TableCell>{flexRender(data.tel)}</TableCell>
                 <TableCell>
                   <DropdownMenu>
@@ -107,20 +107,7 @@ function DataTable() {
   );
 }
 
-async function getData() {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
-  ];
-}
-
-export default async function DemoPage() {
+export default async function employeeData() {
   return (
     <div className="container mx-auto">
       <DataTable />
