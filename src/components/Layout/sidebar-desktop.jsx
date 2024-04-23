@@ -25,13 +25,13 @@ export function Sidebardesktop() {
                 Dashboard
               </SidebarButton>
             </Link>
-            <Link href="/menu">
-                <SidebarButton className={"w-full"} icon={Salad} variant={pathName == '/menu' ? 'secondary' : 'ghost'}>
+            <Link href="/Admin/menuManage/menu">
+                <SidebarButton className={"w-full"} icon={Salad} variant={pathName == '/Admin/menuManage/menu' ? 'secondary' : 'ghost'}>
                 เมนู
               </SidebarButton>
             </Link>
-            <Link href="#">
-                <SidebarButton className={"w-full"} icon={Users} variant={pathName == '#' ? 'secondary' : 'ghost'}>
+            <Link href="/Admin/employee">
+                <SidebarButton className={"w-full"} icon={Users} variant={pathName == '/Admin/employee' ? 'secondary' : 'ghost'}>
                 พนักงาน
               </SidebarButton>
             </Link>
@@ -45,7 +45,7 @@ export function Sidebardesktop() {
                   <div className="flex justify-between items-center w-full">
                     <div className="flex gap-2">
                       <Avatar className="h-5 w-5">
-                        <AvatarImage src="https://github.com/max-programming.png" />
+                        {/* <AvatarImage src="https://github.com/max-programming.png" /> */}
                         <AvatarFallback> Imron </AvatarFallback>
                       </Avatar>
                       <span>imron</span>

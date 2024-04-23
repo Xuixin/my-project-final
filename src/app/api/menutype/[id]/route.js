@@ -1,10 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { response } from "express";
 import { NextResponse } from "next/server";
-import { json } from "sequelize";
 const prisma = new PrismaClient();
 
-export async function GET(req, { params }) {
+export async function GET(request, { params }) {
   const id = Number(params.id);
   try {
     const type = await prisma.menuType.findUnique({
@@ -21,9 +19,9 @@ export async function GET(req, { params }) {
   }
 }
 
-export async function PUT(req, { params }) {
+export async function PUT(request, { params }) {
   const id = Number(params.id);
-  const { typeName } = await req.json();
+  const { typeName } = await request.json();
 
   const updateType = await prisma.menutype.update({
     where: {
@@ -36,7 +34,7 @@ export async function PUT(req, { params }) {
   return Response.json(updateType)
 }
 
-export async function DELETE(req, { params }){
+export async function DELETE(request, { params }){
     const id = Number(params.id);
 
     const deleteType = await prisma.menutype.delete({

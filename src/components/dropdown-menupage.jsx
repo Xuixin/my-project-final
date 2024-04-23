@@ -19,16 +19,16 @@ export function DropdownMenuPages({ path }) {
   const [position, setPosition] = useState("");
   useEffect(() => {
     switch (path) {
-      case "/menu":
+      case "/Admin/menuManage/menu":
         setPosition("เมนู");
         break;
-      case "/menuset":
+      case "/Admin/menuManage/menuset":
         setPosition("เมนูเซ็ต");
         break;
-      case "/discount":
+      case "/Admin/menuManage/discount":
         setPosition("ส่วนลด");
         break;
-      case "/menutype":
+      case "/Admin/menuManage/menutype":
         setPosition("ประเภทเมนู");
       default:
         break;
@@ -52,19 +52,19 @@ export function DropdownMenuPages({ path }) {
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuItem>
-                  <Link href={"/menu"}>เมนู</Link>
+                  <Link href={"/Admin/menuManage/menu"}>เมนู</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href={"/menutype"}>ประเภทเมนู</Link>
+                  <Link href={"/Admin/menuManage/menutype"}>ประเภทเมนู</Link>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuItem>
-            <Link href={"/menuset"}>เมนูเซ็ต</Link>
+            <Link href={"/Admin/menuManage/menuset"}>เมนูเซ็ต</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href={"/discount"}>ส่วนลด</Link>
+            <Link href={"/Admin/menuManage/discount"}>ส่วนลด</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

@@ -10,9 +10,8 @@ import {
 } from "@/components/ui/select";
 import { DropdownMenuPages } from "@/components/dropdown-menupage";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { AddType, DeleteType, EditType } from "@/app/menutype/actions/EditType";
+import { AddType, DeleteType, EditType } from "@/app/Admin/menuManage/menutype/actions/serverActions"
 
 const MenuType = () => {
   const pathName = usePathname();

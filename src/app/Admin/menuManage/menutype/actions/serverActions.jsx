@@ -8,10 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Label } from "@radix-ui/react-label";
 import axios from "axios";
+
 
 // แก้ไข ประเภทเมนู
 export const EditType = ({ id, val, func }) => {
@@ -129,7 +130,6 @@ export const AddType = ({ func }) => {
 export const DeleteType = ({ id, func }) => {
 
   const handleDeleteSubmit = async (id) => {
-    
     try {
       await axios.delete(`/api/menutype/${id}`);
       alert("deleted data");

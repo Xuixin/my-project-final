@@ -1,8 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import React, { useState } from "react";
+
 import {
   Select,
   SelectContent,
@@ -12,12 +9,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
-import { DropdownMenuPages } from "@/components/dropdown-menupage";
 import { usePathname } from "next/navigation";
 
 //COMPONANT
 import { DropdownMenuS } from "@/components/MenuSet/UpdateMenusetDropdown";
 import { AddMenu } from "@/components/Menu/AddMenu";
+import { DropdownMenuPages } from "@/components/dropdown-menupage";
 
 const Menu = () => {
   const pathName = usePathname();
