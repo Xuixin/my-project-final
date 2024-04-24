@@ -66,7 +66,7 @@ const Employee = () => {
       <hr className="my-5" />
       {/* content */}
       <div className="w-full px-5">
-        <EmployeeData  filter={filterValue} />
+        <EmployeeData   />
       </div>
     </section>
   );

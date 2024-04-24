@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../../../components/ui/button";
 
-function DataTable({ filter }) {
+function DataTable() {
   const datas = [
     {
       id: 1,
@@ -107,10 +107,10 @@ function DataTable({ filter }) {
   );
 }
 
-export function EmployeeData({ filter }) {
+export function EmployeeData() {
   return (
     <div className="container mx-auto">
-      <DataTable filter={filter} />
+      <DataTable  />
     </div>
   );
 }
