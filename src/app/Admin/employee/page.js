@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //UI
 import { Input } from "@/components/ui/input";
@@ -12,9 +12,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import DemoPage from "./employeeData";
+import { EmployeeData } from "./employeeData";
+
 
 const Employee = () => {
+  const [filterValue, setFilterValue] = useState('')
+
   return (
     <section className="flex ml-3 h-screen flex-col bg-white">
       {/* ################## HEADER ################ */}
@@ -40,7 +43,7 @@ const Employee = () => {
                 <Button>เพิ่มพนักงาน</Button>
               </div>
               <div className="w-[full]">
-                <Input type="email" placeholder="ค้นหาด้วยชื่อ" />
+                <Input type="text" placeholder="ค้นหาด้วยชื่อ" onChange={(event) => setFilterValue(event.target.value)} />
               </div>
             </div>
             <div className="ml-20 ">
@@ -63,7 +66,7 @@ const Employee = () => {
       <hr className="my-5" />
       {/* content */}
       <div className="w-full px-5">
-        <DemoPage />
+        <EmployeeData  filter={filterValue} />
       </div>
     </section>
   );
