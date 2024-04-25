@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 //UI
 import { Input } from "@/components/ui/input";
@@ -13,10 +14,15 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { EmployeeData } from "./employeeData";
+import { useRouter } from "next/navigation";
 
 
 const Employee = () => {
   const [filterValue, setFilterValue] = useState('')
+  const rounter = useRouter()
+  const gotoAddEmPage = () => {
+    rounter.push('/Admin/employee/adduser')
+  }
 
   return (
     <section className="flex ml-3 h-screen flex-col bg-white">
@@ -40,7 +46,7 @@ const Employee = () => {
               <div>
                 {/* Add Menu Type */}
                 {/* / <AddType func={setRerender} /> */}
-                <Button>เพิ่มพนักงาน</Button>
+                <Button onClick={gotoAddEmPage} >เพิ่มพนักงาน</Button>
               </div>
               <div className="w-[full]">
                 <Input type="text" placeholder="ค้นหาด้วยชื่อ" onChange={(event) => setFilterValue(event.target.value)} />
