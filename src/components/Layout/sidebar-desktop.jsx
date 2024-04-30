@@ -21,18 +21,15 @@ export function Sidebardesktop() {
         <div className="mt-5">
           <div className="flex flex-col gap-1 w-full">
             <Link href={"/"}>
-              <SidebarButton className={"w-full"} icon={LayoutDashboard} variant={pathName == '/' ? 'secondary' : 'ghost'}>
-                Dashboard
+              <SidebarButton icon={LayoutDashboard}children={'Dashboard'} variant={pathName == '/' ? 'secondary' : 'ghost'}>
               </SidebarButton>
             </Link>
             <Link href="/Admin/menuManage/menu">
-                <SidebarButton className={"w-full"} icon={Salad} variant={pathName == '/Admin/menuManage/menu' ? 'secondary' : 'ghost'}>
-                รายการเมนู และ CRM
+                <SidebarButton icon={Salad} children={'รายการเมนู และ CRM'} variant={pathName == '/Admin/menuManage/menu' ? 'secondary' : 'ghost'}>
               </SidebarButton>
             </Link>
             <Link href="/Admin/employee">
-                <SidebarButton className={"w-full"} icon={Users} variant={pathName == '/Admin/employee' ? 'secondary' : 'ghost'}>
-                พนักงาน
+                <SidebarButton icon={Users} children={'พนักงาน'} variant={pathName == '/Admin/employee' ? 'secondary' : 'ghost'}>
               </SidebarButton>
             </Link>
           </div>

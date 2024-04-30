@@ -1,13 +1,10 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { useParams } from "next/navigation";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
+'use client';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // ui
-import { Input } from "@/components/ui/input";
-import { ChevronDown, Slash, UserPlus } from "lucide-react";
+import { Input } from '@/components/ui/input';
+import { ChevronDown, Slash, UserPlus } from 'lucide-react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,33 +12,18 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Value } from "@radix-ui/react-select";
+} from '@/components/ui/breadcrumb';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 const AddEmployee = () => {
   const [userImage, setUserImage] = useState(null);
-  const [date, setDate] = useState();
   // form atribute
-  const [gender, setGender] = useState("");
-
-  const selectGender = (e) => {
-    console.log(e);
-    setGender(e.target.value);
-  };
-
-  useEffect(() => {
-    console.log(gender); // Log the updated value of gender
-  }, [gender]);
+  const [empName, setEmpName] = useState('');
+  const [empLastName, setEmpLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
 
   const imageUpload = (event) => {
     event.preventDefault();
@@ -49,8 +31,17 @@ const AddEmployee = () => {
       setUserImage(event.target.files[0]);
     }
   };
-  const testee = () => {
-    console.log("hello" + gender);
+
+  const handleSubmit = () => {
+    console.log({
+      data: {
+        empName,
+        empLastName,
+        email,
+        userImage,
+        address,
+      },
+    });
   };
 
   return (
@@ -70,9 +61,7 @@ const AddEmployee = () => {
             <BreadcrumbList>
               <BreadcrumbItem>
                 {/* <BreadcrumbLink href="/Admin/employee">พนักงาน</BreadcrumbLink> */}
-                <BreadcrumbLink onClick={() => testee()}>
-                  พนักงาน
-                </BreadcrumbLink>
+                <BreadcrumbLink>พนักงาน</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
@@ -86,6 +75,7 @@ const AddEmployee = () => {
           </Breadcrumb>
         </div>
         <div className="w-full flex ">
+          {/* image */}
           <div className="w-64 flex justify-center max-h-48 min-h-48 mt-5">
             {userImage ? (
               <>
@@ -125,91 +115,66 @@ const AddEmployee = () => {
             <div className="col-span-2">
               <h2 className="text-xl font-semibold">ข้อมูลส่วนตัว</h2>
             </div>
+            {/* Name */}
             <div className="col-span-1">
               <Label htmlFor="name">ชื่อ</Label>
               <div>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  onChange={(e) => setEmpName(e.target.value)}
+                />
               </div>
             </div>
+            {/* lastName */}
             <div className="col-span-1">
               <Label htmlFor="lastName">นามสกุล</Label>
               <div>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  onChange={(e) => setEmpLastName(e.target.value)}
+                />
               </div>
             </div>
+            {/* email */}
             <div className="col-span-1">
-              <Label htmlFor="gender">เพศ</Label>
+              <Label htmlFor="Email">Email</Label>
               <div>
-                <div class="flex items-center">
-                  <Input
-                    id="default-radio-2"
-                    type="radio"
-                    value="1"
-                    onChange={(e) => setGender(e.target.value)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-radio-2"
-                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    Checked state
-                  </label>
-                </div>
-                <div class="flex items-center">
-                  <Input
-                    id="default-radio-2"
-                    type="radio"
-                    value="2"
-                    onChange={(e) => setGender(e.target.value)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-radio-2"
-                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    Checked state
-                  </label>
-                </div>
+                <Input
+                  type="text"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
             </div>
-            <div className="col-span-1">
-              <Label htmlFor="dateOfBirth">วันเกิด</Label>
-              <div>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : null}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </div>
+            {/* หน้าที่ */}
             <div className="col-span-1">
               <Label htmlFor="departMent">หน้าที่</Label>
               <div>
                 <Input type="text" />
               </div>
             </div>
+            {/* salary */}
             <div className="col-span-1">
               <Label htmlFor="salary">เงินเดือน</Label>
               <div>
-                <Input type="text" value={`${20000} ริงกิต/เดือน`} disabled />
+                <Input
+                  type="text"
+                  value={`${20000} ริงกิต/เดือน`}
+                  disabled
+                />
               </div>
+            </div>
+            <div className="col-span-1">
+              <Label htmlFor="address">ที่อยู่</Label>
+              <div>
+                <Textarea
+                  placeholder="เพิ่มที่อยู่."
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className=" col-span-2">
+              <Button onClick={handleSubmit}>เพิ่มพนักงาน</Button>
             </div>
           </div>
         </div>

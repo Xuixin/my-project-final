@@ -1,18 +1,15 @@
-import { Sun, LucideIcon, Home } from "lucide-react";
-import { Button, ButtonProps } from "../ui/button";
+import { Button} from "../ui/button";
 
 export function SidebarButton({
   icon: Icon,
-  className,
   children,
-  ...props
+  variant
 }) {
   // This entire return statement is written in JSX
   return (
     <Button
-      variant="ghost"
-      className={`gap-2 justify-start ${className}`}
-      {...props}
+      variant={variant}
+      className='gap-2 justify-start w-full'
     >
       {Icon && <Icon size={20} />}
       <span>{children}</span>
