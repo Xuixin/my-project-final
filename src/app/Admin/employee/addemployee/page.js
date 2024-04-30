@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { format } from "date-fns";
@@ -26,16 +26,31 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Value } from "@radix-ui/react-select";
 
-const EmployeeById = () => {
+const AddEmployee = () => {
   const [userImage, setUserImage] = useState(null);
   const [date, setDate] = useState();
+  // form atribute
+  const [gender, setGender] = useState("");
+
+  const selectGender = (e) => {
+    console.log(e);
+    setGender(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(gender); // Log the updated value of gender
+  }, [gender]);
 
   const imageUpload = (event) => {
     event.preventDefault();
     if (event.target.files.length > 0) {
       setUserImage(event.target.files[0]);
     }
+  };
+  const testee = () => {
+    console.log("hello" + gender);
   };
 
   return (
@@ -54,7 +69,10 @@ const EmployeeById = () => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/Admin/employee">พนักงาน</BreadcrumbLink>
+                {/* <BreadcrumbLink href="/Admin/employee">พนักงาน</BreadcrumbLink> */}
+                <BreadcrumbLink onClick={() => testee()}>
+                  พนักงาน
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
@@ -72,7 +90,7 @@ const EmployeeById = () => {
             {userImage ? (
               <>
                 <Image
-                  for="upload"
+                  htmlFor="upload"
                   src={URL.createObjectURL(userImage)}
                   alt="alt"
                   width={150}
@@ -88,7 +106,7 @@ const EmployeeById = () => {
             ) : (
               <div className="rounded-md border border-indigo-500 flex justify-center items-center bg-gray-50 p-4 shadow-md w-36">
                 <label
-                  for="upload"
+                  htmlFor="upload"
                   className="flex flex-col items-center gap-2 cursor-pointer"
                 >
                   <UserPlus className="h-10 w-10 fill-white stroke-indigo-500" />
@@ -122,24 +140,41 @@ const EmployeeById = () => {
             <div className="col-span-1">
               <Label htmlFor="gender">เพศ</Label>
               <div>
-                <RadioGroup
-                  className="flex justify-around"
-                  defaultValue="comfortable"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="ชาย" id="r1" />
-                    <Label htmlFor="r1">ชาย</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="หญิง" id="r2" />
-                    <Label htmlFor="r2">หญิง</Label>
-                  </div>
-                </RadioGroup>
+                <div class="flex items-center">
+                  <Input
+                    id="default-radio-2"
+                    type="radio"
+                    value="1"
+                    onChange={(e) => setGender(e.target.value)}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-2"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Checked state
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <Input
+                    id="default-radio-2"
+                    type="radio"
+                    value="2"
+                    onChange={(e) => setGender(e.target.value)}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-radio-2"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Checked state
+                  </label>
+                </div>
               </div>
             </div>
             <div className="col-span-1">
               <Label htmlFor="dateOfBirth">วันเกิด</Label>
-              <div >
+              <div>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
@@ -183,4 +218,4 @@ const EmployeeById = () => {
   );
 };
 
-export default EmployeeById;
+export default AddEmployee;

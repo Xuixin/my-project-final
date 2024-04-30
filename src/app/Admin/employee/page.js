@@ -21,7 +21,7 @@ const Employee = () => {
   const [filterValue, setFilterValue] = useState('')
   const rounter = useRouter()
   const gotoAddEmPage = () => {
-    rounter.push('/Admin/employee/adduser')
+    rounter.push('/Admin/employee/addemployee')
   }
 
   return (
