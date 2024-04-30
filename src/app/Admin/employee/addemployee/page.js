@@ -16,8 +16,10 @@ import {
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 const AddEmployee = () => {
+  const router = useRouter();
   const [userImage, setUserImage] = useState(null);
   // form atribute
   const [empName, setEmpName] = useState('');
@@ -46,7 +48,7 @@ const AddEmployee = () => {
 
   return (
     <section className="ml-3 h-screen flex-col bg-white">
-      <div className="h-20 shadow-md w-full flex justify-star">
+      <div className="h-20 shadow-md w-full flex justify-star rounded-sm">
         <div className="px-3 mt-5 flex">
           <h2 className="text-center font-bold text-2xl ml-5">Profile</h2>
           {/* <div className="ml-10">
@@ -54,26 +56,33 @@ const AddEmployee = () => {
           </div> */}
         </div>
       </div>
-      <div className="bg-slate-100 w-full h-5"></div>
-      <div className="space-y-5 px-5 container pt-5 space-x-4">
-        <div className="ml-4">
+      <div className="bg-slate-100 w-full h-10 flex items-center">
+        <div className="ml-4 ">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
                 {/* <BreadcrumbLink href="/Admin/employee">พนักงาน</BreadcrumbLink> */}
-                <BreadcrumbLink>พนักงาน</BreadcrumbLink>
+                <BreadcrumbLink
+                  className="cursor-pointer"
+                  onClick={() => router.push('/Admin/employee')}
+                >
+                  พนักงาน
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
               </BreadcrumbSeparator>
               <BreadcrumbItem>
-                <BreadcrumbPage className="font-semibold">
+                <BreadcrumbPage className="font-semibold ">
                   เพิ่มพนักงาน
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
+      </div>
+      <div className="space-y-5 px-5 container pt-5 space-x-4 rounded-sm">
+        {/* นำทาง */}
         <div className="w-full flex ">
           {/* image */}
           <div className="w-64 flex justify-center max-h-48 min-h-48 mt-5">

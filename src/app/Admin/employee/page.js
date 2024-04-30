@@ -1,9 +1,9 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+'use client';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 //UI
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -11,18 +11,17 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { EmployeeData } from "./employeeData";
-import { useRouter } from "next/navigation";
-
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { EmployeeData } from './employeeData';
+import { useRouter } from 'next/navigation';
 
 const Employee = () => {
-  const [filterValue, setFilterValue] = useState('')
-  const rounter = useRouter()
+  const [filterValue, setFilterValue] = useState('');
+  const rounter = useRouter();
   const gotoAddEmPage = () => {
-    rounter.push('/Admin/employee/addemployee')
-  }
+    rounter.push('/Admin/employee/addemployee');
+  };
 
   return (
     <section className="flex ml-3 h-screen flex-col bg-white">
@@ -46,10 +45,7 @@ const Employee = () => {
               <div>
                 {/* Add Menu Type */}
                 {/* / <AddType func={setRerender} /> */}
-                <Button onClick={gotoAddEmPage} >เพิ่มพนักงาน</Button>
-              </div>
-              <div className="w-[full]">
-                <Input type="text" placeholder="ค้นหาด้วยชื่อ" onChange={(event) => setFilterValue(event.target.value)} />
+                <Button onClick={gotoAddEmPage}>เพิ่มพนักงาน</Button>
               </div>
             </div>
             <div className="ml-20 ">
@@ -72,7 +68,7 @@ const Employee = () => {
       <hr className="my-5" />
       {/* content */}
       <div className="w-full px-5">
-        <EmployeeData   />
+        <EmployeeData />
       </div>
     </section>
   );
