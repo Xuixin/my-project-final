@@ -1,10 +1,7 @@
 import React from 'react'
 
-const empById = ({ id }) => {
-    const { id } =
-  return (
-    <div>empById</div>
-  )
+const empById = ({ params }) => {
+  return <div>{params.id} this param</div>
 }
 
 export default empById

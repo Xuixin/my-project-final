@@ -1,9 +1,9 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+'use client'
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 //UI
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
@@ -11,52 +11,41 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { EmployeeData } from './employeeData';
-import { useRouter } from 'next/navigation';
+} from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
+import { EmployeeData } from './employeeData'
+import { useRouter } from 'next/navigation'
 
 const Employee = () => {
-  const [filterValue, setFilterValue] = useState('');
-  const rounter = useRouter();
+  const [filterValue, setFilterValue] = useState('')
+  const rounter = useRouter()
   const gotoAddEmPage = () => {
-    rounter.push('/Admin/employee/addemployee');
-  };
+    rounter.push('/Admin/employee/addemployee')
+  }
 
   return (
-    <section className="flex ml-3 h-screen flex-col bg-white">
-      {/* ################## HEADER ################ */}
-      <div className="h-20 shadow-md w-full flex justify-start ">
-        <div className="px-3 mt-5 flex">
-          <h2 className="text-center font-bold text-2xl">พนักงาน</h2>
-          {/* <div className="ml-10">
-            <DropdownMenuPages path={pathName} />
-          </div> */}
-        </div>
-      </div>
-      {/* line */}
-      <div className=" h-5 bg-slate-100"></div>
+    <>
       {/* content-header */}
-      <div className="flex flex-col justify-center items-center px-5 pt-6 ">
+      <div className='flex flex-col justify-center items-center px-5 pt-6'>
         {/*ORDER BY */}
-        <div className="w-full">
-          <div className="h-10 w-full flex justify-between items-center space-x-2">
-            <div className="flex space-x-2">
+        <div className='w-full'>
+          <div className='h-10 w-full flex justify-between items-center space-x-2'>
+            <div className='flex space-x-2'>
               <div>
                 {/* Add Menu Type */}
                 {/* / <AddType func={setRerender} /> */}
                 <Button onClick={gotoAddEmPage}>เพิ่มพนักงาน</Button>
               </div>
             </div>
-            <div className="ml-20 ">
+            <div className='ml-20 '>
               <Select>
-                <SelectTrigger className="w-[120px]">
+                <SelectTrigger className='w-[120px]'>
                   <SelectValue placeholder={`Order By`} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="apple">วันที่เพิ่ม</SelectItem>
-                    <SelectItem value="apple">ราคา</SelectItem>
+                    <SelectItem value='apple'>วันที่เพิ่ม</SelectItem>
+                    <SelectItem value='apple'>ราคา</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -65,13 +54,13 @@ const Employee = () => {
         </div>
       </div>
       {/* line */}
-      <hr className="my-5" />
+      <hr className='my-5' />
       {/* content */}
-      <div className="w-full px-5">
+      <div className='w-full px-5'>
         <EmployeeData />
       </div>
-    </section>
-  );
-};
+    </>
+  )
+}
 
-export default Employee;
+export default Employee
