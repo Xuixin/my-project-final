@@ -28,6 +28,7 @@ import {
 import { Button } from '../../../components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
+import Link from 'next/link'
 
 function DataTable() {
   const [filterValue, setFilterValue] = useState('');
@@ -118,15 +119,15 @@ function DataTable() {
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan="6"
-                    className="h-24 text-center"
-                  >
-                    No results.
+                  <TableRow>
+                    <TableCell
+                      colSpan="6"
+                      className="h-24 text-center"
+                    >
+                      No results.
                   </TableCell>
-                </TableRow>
-              )
+                  </TableRow>
+                )
             ) : datas.length ? (
               datas.map((data, index) => (
                 <TableRow key={data.id}>
@@ -144,10 +145,12 @@ function DataTable() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-36">
                         <DropdownMenuGroup>
-                          <DropdownMenuItem>
-                            <Eye className="mr-2 h-4 w-4" />
-                            <span>view</span>
-                          </DropdownMenuItem>
+                          <Link href={`/Admin/employee/${data.id}`}>
+                            <DropdownMenuItem>
+                              <Eye className="mr-2 h-4 w-4" />
+                              <span>view</span>
+                            </DropdownMenuItem>
+                          </Link>
                           <DropdownMenuItem className="text-red-600">
                             <User
                               className="mr-2 h-4 w-4"
@@ -162,15 +165,15 @@ function DataTable() {
                 </TableRow>
               ))
             ) : (
-              <TableRow>
-                <TableCell
-                  colSpan="6"
-                  className="h-24 text-center"
-                >
-                  No data available.
+                  <TableRow>
+                    <TableCell
+                      colSpan="6"
+                      className="h-24 text-center"
+                    >
+                      No data available.
                 </TableCell>
-              </TableRow>
-            )}
+                  </TableRow>
+                )}
           </TableBody>
         </Table>
       </div>
